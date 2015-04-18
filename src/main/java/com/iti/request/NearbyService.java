@@ -137,7 +137,7 @@ public class NearbyService {
             } else if (fromIndex >= toIndex) {
                 continue;
             } else {
-                result.add(train.getKey() + " " + train.getValue().get(fromIndex).getTime());
+                result.add("رقم القطار :"+train.getKey() + " توقيت القيام " + train.getValue().get(fromIndex).getTime());
             }
         }
 
