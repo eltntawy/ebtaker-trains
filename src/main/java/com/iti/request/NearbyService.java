@@ -121,7 +121,7 @@ public class NearbyService {
         return result.toString();
     }
 
-    public static List<String> getTrains(String from, String to){
+    public static List<String> getTrains(City from, City to){
 
 
 
@@ -133,9 +133,9 @@ public class NearbyService {
             int toIndex = train.getValue().indexOf(to);
 
             if (fromIndex == -1 || toIndex == -1) {
-                break;
+                continue;
             } else if (fromIndex >= toIndex) {
-                break;
+                continue;
             } else {
                 result.add(train.getKey() + " " + train.getValue().get(fromIndex).getTime());
             }
@@ -146,16 +146,16 @@ public class NearbyService {
 
     public static Map<String,List<City>> getTrainsSchedule(){
 
-        City Cairo = new City(1, "القاهرة", "01:00");
-        City Alex = new City(2, "الاسكندرية,", "02:00");
-        City Asiut = new City(3, "أسيوط", "04:00");
-        City Ismailia = new City(4, "الاسماعيلية", "06:00");
-        City Luxor = new City(5, "الأقصر", "12:00");
-        City Giza = new City(6, "الجيزة", "15:00");
-        City Banha = new City(7, "بنها", "16:00");
-        City Swaif = new City(8, "بني سويف", "23:00");
-        City Kena = new City(9, "قنا", "11:00");
-        City Tanta = new City(10, "طنطا", "10:00");
+        City Cairo = new City("1", "القاهرة", "01:00");
+        City Alex = new City("2", "الاسكندرية,", "02:00");
+        City Asiut = new City("3", "أسيوط", "04:00");
+        City Ismailia = new City("4", "الاسماعيلية", "06:00");
+        City Luxor = new City("5", "الأقصر", "12:00");
+        City Giza = new City("6", "الجيزة", "15:00");
+        City Banha = new City("7", "بنها", "16:00");
+        City Swaif = new City("8", "بني سويف", "23:00");
+        City Kena = new City("9", "قنا", "11:00");
+        City Tanta = new City("10", "طنطا", "10:00");
 
         Map<String, List<City>> trains = new HashMap<>();
         trains.put("587", Arrays.asList(new City[]{Alex, Cairo, Asiut}));

@@ -2,6 +2,7 @@ package com.iti.main;
 
 import com.iti.Response;
 import com.iti.ServiceType;
+import com.iti.pojo.City;
 import com.iti.request.NearbyService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,7 +54,7 @@ public class NearbyController {
                 case "1":
                      data = sessionManager.get(sessionId);
 
-                    data.setFrom(ServiceType.getCity(text));
+                    data.setFrom(new City(text,ServiceType.getCity(text)));
 
                     response.setResult("0");
                     response.createCitiesScreen("to");
@@ -63,7 +64,7 @@ public class NearbyController {
                 case "2":
                     data = sessionManager.get(sessionId);
 
-                    data.setTo(ServiceType.getCity(text));
+                    data.setTo(new City(text,ServiceType.getCity(text)));
 
                     List<String> trains= NearbyService.getTrains(data.getFrom(),data.getTo());
                     StringBuilder stringBuilder = new StringBuilder();
@@ -97,22 +98,22 @@ public class NearbyController {
 
 
 class Data {
-    private String from;
-    private String to;
+    private City from;
+    private City to;
 
-    public String getFrom() {
+    public City getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public void setFrom(City from) {
         this.from = from;
     }
 
-    public String getTo() {
+    public City getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public void setTo(City to) {
         this.to = to;
     }
 }
