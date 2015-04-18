@@ -1,6 +1,5 @@
 package com.iti;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -49,7 +48,7 @@ public class ServiceType {
     }
 
 
-    private static Map<String, String> cities = new HashMap<String, String>();
+    private static Map<String, String> cities = new TreeMap<String, String>();
 
     public static Map<String,String> getCities() {
         cities.put("1", "القاهره");

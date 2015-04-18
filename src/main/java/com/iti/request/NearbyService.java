@@ -6,6 +6,7 @@
 
 package com.iti.request;
 
+import com.iti.pojo.City;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -18,9 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -124,8 +123,47 @@ public class NearbyService {
 
     public static List<String> getTrains(String from, String to){
 
-        //new ArrayList<String>().ind
-        return null;
+
+
+        Map<String,List<City>> trainsSchedule = getTrainsSchedule();
+        List<String> result = new ArrayList<>();
+
+        for (Map.Entry<String, List<City>> train : trainsSchedule.entrySet()) {
+            int fromIndex = train.getValue().indexOf(from);
+            int toIndex = train.getValue().indexOf(to);
+
+            if (fromIndex == -1 || toIndex == -1) {
+                break;
+            } else if (fromIndex >= toIndex) {
+                break;
+            } else {
+                result.add(train.getKey() + " " + train.getValue().get(fromIndex).getTime());
+            }
+        }
+
+        return result;
     }
-    
+
+    public static Map<String,List<City>> getTrainsSchedule(){
+
+        City Cairo = new City(1, "القاهرة", "01:00");
+        City Alex = new City(2, "الاسكندرية,", "02:00");
+        City Asiut = new City(3, "أسيوط", "04:00");
+        City Ismailia = new City(4, "الاسماعيلية", "06:00");
+        City Luxor = new City(5, "الأقصر", "12:00");
+        City Giza = new City(6, "الجيزة", "15:00");
+        City Banha = new City(7, "بنها", "16:00");
+        City Swaif = new City(8, "بني سويف", "23:00");
+        City Kena = new City(9, "قنا", "11:00");
+        City Tanta = new City(10, "طنطا", "10:00");
+
+        Map<String, List<City>> trains = new HashMap<>();
+        trains.put("587", Arrays.asList(new City[]{Alex, Cairo, Asiut}));
+        trains.put("123", Arrays.asList(new City[]{Alex, Tanta, Cairo, Ismailia, Kena}));
+        trains.put("789", Arrays.asList(new City[]{Giza, Banha, Swaif, Luxor}));
+        trains.put("105", Arrays.asList(new City[]{Luxor, Asiut, Kena, Cairo, Tanta, Alex}));
+
+        return trains;
+    }
+
 }

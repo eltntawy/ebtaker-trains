@@ -1,12 +1,14 @@
 package com.iti.main;
 
 import com.iti.Response;
+import com.iti.request.NearbyService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -54,7 +56,7 @@ public class NearbyController {
 
                     response.setResult("0");
                     response.createCitiesScreen("to");
-                    response.setScreenId("1");
+                    response.setScreenId("2");
                     response.setSessionOperation(Response.SESSION_OPERATION_CONTINUE);
                     break;
                 case "2":
@@ -62,7 +64,13 @@ public class NearbyController {
 
                     data.setTo(text);
 
-                    response.setText("");
+                    List<String> trains= NearbyService.getTrains(data.getFrom(),data.getTo());
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for(String train : trains) {
+                        stringBuilder.append(train+" - ");
+                    }
+
+                    response.setText(stringBuilder.toString());
 
                     response.setResult("0");
                     response.setSessionOperation(Response.SESSION_OPERATION_END);
