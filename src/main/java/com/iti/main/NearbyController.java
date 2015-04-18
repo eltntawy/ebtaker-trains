@@ -1,6 +1,7 @@
 package com.iti.main;
 
 import com.iti.Response;
+import com.iti.ServiceType;
 import com.iti.request.NearbyService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +53,7 @@ public class NearbyController {
                 case "1":
                      data = sessionManager.get(sessionId);
 
-                    data.setFrom(text);
+                    data.setFrom(ServiceType.getCity(text));
 
                     response.setResult("0");
                     response.createCitiesScreen("to");
@@ -62,7 +63,7 @@ public class NearbyController {
                 case "2":
                     data = sessionManager.get(sessionId);
 
-                    data.setTo(text);
+                    data.setTo(ServiceType.getCity(text));
 
                     List<String> trains= NearbyService.getTrains(data.getFrom(),data.getTo());
                     StringBuilder stringBuilder = new StringBuilder();
