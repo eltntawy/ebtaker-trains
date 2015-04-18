@@ -51,16 +51,16 @@ public class ServiceType {
     private static Map<String, String> cities = new TreeMap<String, String>();
 
     public static Map<String,String> getCities() {
-        cities.put("1", "القاهره");
-        cities.put("2", "الاسكندرية");
-        cities.put("3", "اسيوط");
-        cities.put("4", "الاسماعلية");
-        cities.put("5", "لاقصر");
-        cities.put("6", "الجيزة");
-        cities.put("7", "بنها");
-        cities.put("8", "بنى سويف");
-        cities.put("9", "قنا");
-        cities.put("10", "طنطا");
+        cities.put("1", "Cairo");
+        cities.put("2", "Alex");
+        cities.put("3", "Asiut");
+        cities.put("4", "Ismailia");
+        cities.put("5", "Luxor");
+        cities.put("6", "Giza");
+        cities.put("7", "Banha");
+        cities.put("8", "Bani Swaif");
+        cities.put("9", "Kena");
+        cities.put("10", "Tanta");
 
         return cities;
     }

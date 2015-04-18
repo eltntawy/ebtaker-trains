@@ -22,16 +22,15 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 /**
- *
  * @author yomna
  */
 public class NearbyService {
-    
-    public static List getNearbyHospital(String x, String y,String r) throws IOException {
-        
-    	String type = "food";
+
+    public static List getNearbyHospital(String x, String y, String r) throws IOException {
+
+        String type = "food";
         return getNearby(x, y, r, type);
-       
+
     }
 
     public static Location getLocation(String to) throws IOException {
@@ -48,16 +47,15 @@ public class NearbyService {
 //        String radius = (String) jsonObj.get("radius");
 
 
-
         //Location location = new Location(xCord,yCord,radius);
         //Location location = new Location("30.079189","31.014934","10000"); // ITI
-        Location location = new Location("40.851394","-93.260018","10000");
+        Location location = new Location("40.851394", "-93.260018", "10000");
 
         return location;
     }
-    
-    public static List<Address> getNearby(String x, String y,String r,String type) throws IOException {
-        
+
+    public static List<Address> getNearby(String x, String y, String r, String type) throws IOException {
+
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?v=3&location=";
         url = url.concat(x);
         url = url.concat("%2C");
@@ -121,11 +119,10 @@ public class NearbyService {
         return result.toString();
     }
 
-    public static List<String> getTrains(City from, City to){
+    public static List<String> getTrains(City from, City to) {
 
 
-
-        Map<String,List<City>> trainsSchedule = getTrainsSchedule();
+        Map<String, List<City>> trainsSchedule = getTrainsSchedule();
         List<String> result = new ArrayList<>();
 
         for (Map.Entry<String, List<City>> train : trainsSchedule.entrySet()) {
@@ -137,14 +134,14 @@ public class NearbyService {
             } else if (fromIndex >= toIndex) {
                 continue;
             } else {
-                result.add("رقم القطار :"+train.getKey() + " توقيت القيام " + train.getValue().get(fromIndex).getTime());
+                result.add("رقم القطار :" + train.getKey() + " توقيت القيام " + train.getValue().get(fromIndex).getTime());
             }
         }
 
         return result;
     }
 
-    public static Map<String,List<City>> getTrainsSchedule(){
+    public static Map<String, List<City>> getTrainsSchedule() {
 
         City Cairo = new City("1", "القاهرة", "01:00");
         City Alex = new City("2", "الاسكندرية,", "02:00");
@@ -162,6 +159,31 @@ public class NearbyService {
         trains.put("123", Arrays.asList(new City[]{Alex, Tanta, Cairo, Ismailia, Kena}));
         trains.put("789", Arrays.asList(new City[]{Giza, Banha, Swaif, Luxor}));
         trains.put("105", Arrays.asList(new City[]{Luxor, Asiut, Kena, Cairo, Tanta, Alex}));
+
+        trains.put("903", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("905", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("901", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("89", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("905", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("931", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("921", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+        trains.put("901", Arrays.asList(new City[]{Cairo, Banha, Tanta, Alex}));
+
+
+        trains.put("902", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("936", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("900", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("1906", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("910", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("912", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("914", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("922", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("88", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("1910", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("928", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("1916", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("930", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
+        trains.put("920", Arrays.asList(new City[]{Alex, Tanta, Banha, Cairo}));
 
         return trains;
     }
