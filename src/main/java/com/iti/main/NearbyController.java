@@ -72,7 +72,12 @@ public class NearbyController {
                         stringBuilder.append(train+" - ");
                     }
 
-                    response.setText(stringBuilder.toString());
+                    if(stringBuilder.length() > 0) {
+                        response.setText(stringBuilder.toString());
+                    }
+                    else {
+                        response.setText("Their is no train schedule for thus cities");
+                    }
 
                     response.setResult("0");
                     response.setSessionOperation(Response.SESSION_OPERATION_END);
